@@ -23,7 +23,7 @@ def run_optimized_voting(votes_count=200):
     cursor = conn.cursor()
     start_time = time.time()
     
-    # Открываем транзакцию вручную — данные будут копиться в оперативной памяти
+   
     cursor.execute("BEGIN TRANSACTION;")
     
     for i in range(votes_count):
@@ -32,7 +32,7 @@ def run_optimized_voting(votes_count=200):
             (5, 1, f"hash_user_{i}", time.time())
         )
         
-    # Один финальный commit на весь пакет из 200 голосов
+    
     conn.commit() 
     
     duration = time.time() - start_time
@@ -42,7 +42,7 @@ def run_optimized_voting(votes_count=200):
     return duration
 
 if __name__ == "__main__":
-    # Сбрасываем старую БД перед тестом
+   
     if os.path.exists('voting_system.db'):
         os.remove('voting_system.db')
         
