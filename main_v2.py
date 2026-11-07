@@ -3,7 +3,6 @@ import time
 import os
 
 def init_db():
-    """Инициализация базы данных голосования"""
     conn = sqlite3.connect('voting_system.db')
     cursor = conn.cursor()
     cursor.execute('''
@@ -19,12 +18,10 @@ def init_db():
     conn.close()
 
 def run_optimized_voting(votes_count):
-    """Вычислительный эксперимент: пакетная запись голосов одной транзакцией"""
     conn = sqlite3.connect('voting_system.db')
     cursor = conn.cursor()
     start_time = time.time()
 
-    # Открываем транзакцию вручную — данные будут копиться в оперативной памяти
     cursor.execute("BEGIN TRANSACTION;")
 
     for i in range(votes_count):
@@ -33,7 +30,6 @@ def run_optimized_voting(votes_count):
             (5, 1, f"hash_user_{i}", time.time())
         )
 
-    # Один финальный commit на весь пакет
     conn.commit()
 
     duration = time.time() - start_time
