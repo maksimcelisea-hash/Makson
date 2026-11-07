@@ -3,7 +3,6 @@ import time
 import os
 
 def init_db():
-    """Инициализация базы данных голосования"""
     conn = sqlite3.connect('voting_system.db')
     cursor = conn.cursor()
     cursor.execute('''
@@ -19,7 +18,6 @@ def init_db():
     conn.close()
 
 def run_voting_experiment(votes_count):
-    """Вычислительный эксперимент: построчная запись каждого голоса"""
     conn = sqlite3.connect('voting_system.db')
     cursor = conn.cursor()
     start_time = time.time()
@@ -29,7 +27,6 @@ def run_voting_experiment(votes_count):
             "INSERT INTO votes (poll_id, candidate_id, voter_hash, timestamp) VALUES (?, ?, ?, ?)",
             (5, 1, f"hash_user_{i}", time.time())
         )
-        # Медленно: принудительно сохраняем на жесткий диск после каждого голоса
         conn.commit() 
         
     duration = time.time() - start_time
