@@ -1,4 +1,3 @@
-# main_v1.py (Часть 1 из 2)
 import sqlite3
 import tkinter as tk
 from tkinter import messagebox
@@ -39,8 +38,7 @@ class SimpleAddWindow:
 
         tk.Label(self.root, text="Общее число избирателей в регионе:", font=("Arial", 10)).pack(pady=2)
         self.entry_pop = tk.Entry(self.root, font=("Arial", 10), width=35)
-        self.entry_pop.pack(pady=2)
-        # main_v1.py (Часть 2 из 2)
+        self.entry_pop.pack(pady=2)       
         tk.Button(self.root, text="Сохранить в базу данных", command=self.add_poll_to_db, bg="#4CAF50", fg="white",
                   font=("Arial", 10, "bold"), width=22).pack(pady=20)
 
